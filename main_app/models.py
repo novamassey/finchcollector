@@ -1,4 +1,6 @@
 from django.db import models
+#import reverse to use in the get_absolute_url function
+from django.urls import reverse
 
 # Create your models here.
 
@@ -23,4 +25,7 @@ class Finch(models.Model):
     
     def __str__(self):
         return f"({self.id} - {self.name}"
+
+    def get_absolute_url(self):
+        return reverse('finches_detail', kwargs={'finch_id': self.id})    
 

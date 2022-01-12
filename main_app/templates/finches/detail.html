@@ -7,6 +7,10 @@
         <p> Coloration: {{finch.color }}</p>
         <p> Species: {{ finch.species }} </p>
     </div>
+    <div class="card-action">
+        <a href="{% url 'finches_update' finch.id %}">Edit Finch Facts!</a>
+        <a href="{% url 'finches_delete' finch.id %}">DELETE FINCH</a>
+    </div>
 </div>
 
 

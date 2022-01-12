@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2> DELETE FINCH</h2>
+<p> Are you sure you want to delete {{object.name }} from the Finch directory?</p>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Confirm & Delete" class="btn">
+    <a href="{% url 'finches_detail' finch.id %}">Cancel</a>
+</form>
+{% endblock%}
