@@ -19,10 +19,13 @@ def finches_index(request):
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
     feeding_form = FeedingForm()
+    toys_finch_doesnt_have = Toy.objects.exclude(id__in=finch.toys.all().values_list('id'))
     return render(request, 'finches/detail.html', {
         'finch': finch,
-        'feeding_form': feeding_form
-        })  
+        'feeding_form': feeding_form,
+        'toys': toys_finch_doesnt_have
+        })
+
 def add_feeding(request, finch_id):
     form = FeedingForm(request.POST)
     if form.is_valid():

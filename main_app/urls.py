@@ -20,7 +20,7 @@ urlpatterns = [
   #path to a list of all toys
   path('toys/', views.ToyList.as_view(), name='toys_index'),
   #path to associate toys with a finch
-  path('toys/<int:finch_id>/<int:toy_id>/', views.assoc_toy, name='assoc_toy'),
+  path('finches/<int:finch_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy'),
   #path to a detail of a toy
   path('toys/<int:pk>/detail', views.ToyDetail.as_view(), name='toys_detail'),
   # path to create toys

@@ -30,6 +30,7 @@ class Finch(models.Model):
     type = models.CharField(max_length=25)
     color = models.CharField(max_length = 100)
     species = models.TextField(max_length = 300)
+    toys = models.ManyToManyField(Toy)
     
     def __str__(self):
         return f"({self.id} - {self.name}"
