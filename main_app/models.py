@@ -18,20 +18,12 @@ FOODS = (
     ('E', 'eggfood')
 )
 
-# Create your models here.
+class Toy(models.Model):
+    name = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
 
-# class Finch():
-#     def __init__(self, name, type, color, species='bird'):
-#         self.name = name 
-#         self.type = type
-#         self.color = color
-#         self.species = species
-
-# finches = [
-#    Finch('Tweety', 'Hawfinch', 'Crimson'),
-#    Finch('Polly', 'Hooded siskin', 'Yellow', 'Part Dinosaur'),
-#    Finch('Greta', 'Elegant euphonia', 'Blue & Orange', 'Part Chicken') 
-# ]        
+    def get_absolute_url(self):
+        return reverse('toys_detail', kwargs={'pk':self.id})      
 
 class Finch(models.Model):
     name = models.CharField(max_length=25)

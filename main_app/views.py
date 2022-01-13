@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Finch
+from .models import Finch, Toy
 from .forms import FeedingForm
 
 # Create your views here.
@@ -28,7 +29,12 @@ def add_feeding(request, finch_id):
         new_feeding = form.save(commit=False)
         new_feeding.finch_id = finch_id
         new_feeding.save()
-    return redirect('finches_detail', finch_id = finch_id)               
+    return redirect('finches_detail', finch_id = finch_id)   
+
+def assoc_toy(request, finch_id, toy_id):
+    finch = Finch.objects.get(id=finch_id)
+    finch.toys.add(toy_id)
+    return redirect('finches_detail', finch_id = finch_id)                
 
 #using imported CreateView we can now create our our class based view function to create finch
 class FinchCreate(CreateView):
@@ -42,3 +48,21 @@ class FinchUpdate(UpdateView):
 class FinchDelete(DeleteView):
     model = Finch
     success_url = '/finches/'        
+
+class ToyList(ListView):
+    model = Toy
+    fields ='__all__'
+
+class ToyDetail(DetailView):
+    model = Toy
+
+
+class ToyCreate(CreateView):
+    model = Toy 
+    fields= '__all__'  
+     
+
+class ToyUpdate(UpdateView) :
+    model: Toy
+    fields='__all__'
+    # succes_url ='/toys/'   
