@@ -42,11 +42,11 @@ def assoc_toy(request, finch_id, toy_id):
 #using imported CreateView we can now create our our class based view function to create finch
 class FinchCreate(CreateView):
     model = Finch
-    fields = '__all__'
+    fields = ['name', 'type', 'color', 'species']
 
 class FinchUpdate(UpdateView):
     model = Finch
-    fields = ['color', 'species']
+    fields = ['type', 'color', 'species']
 
 class FinchDelete(DeleteView):
     model = Finch
